@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Receipts Prediction</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Receipts Prediction</h1>
+    <label for="month-select">Choose a month:</label>
+    <select id="month-select" name="month">
+        {% for month in months %}
+            <option value="{{ month }}">{{ month }}</option>
+        {% endfor %}
+    </select>
+    <button onclick="getPrediction()">Get Prediction</button>
+    <button onclick="getYearlyPredictions()">Show Whole Year Predictions</button>
+
+    <h2 id="prediction-result"></h2>
+    <canvas id="receiptChart"></canvas>
+
+    <script>
+        var receiptChart; // Declare the chart variable globally to access it in multiple functions
+
+        function getPrediction() {
+            var month = document.getElementById('month-select').value;
+            fetch('/predict', {
+                method: 'POST',
+                body: new URLSearchParams({ 'month': month }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('prediction-result').innerText =
+                    'Predicted Receipts for ' + data.month + ': ' + data.predicted_receipts;
+
+                var ctx = document.getElementById('receiptChart').getContext('2d');
+                if (receiptChart) {
+                    receiptChart.destroy(); // Destroy the old chart instance before creating a new one
+                }
+                receiptChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: [data.month],
+                        datasets: [{
+                            label: 'Predicted Receipts',
+                            data: [data.predicted_receipts],
+                            backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                            borderColor: 'rgba(0, 123, 255, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+        }
+
+        function getYearlyPredictions() {
+            fetch('/predict-year')
+            .then(response => response.json())
+            .then(data => {
+                // Assuming 'data' is an array of objects with 'month' and 'predicted_receipts'
+                const labels = data.map(item => item.month);
+                const predictions = data.map(item => item.predicted_receipts);
+
+                // Update chart with new data
+                updateYearlyChart(labels, predictions);
+            });
+        }
+
+        function updateYearlyChart(labels, predictions) {
+            var ctx = document.getElementById('receiptChart').getContext('2d');
+            if (window.receiptChart instanceof Chart) {
+                window.receiptChart.destroy(); // Destroy the old chart instance before creating a new one
+            }
+            window.receiptChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Predicted Receipts',
+                        data: predictions,
+                        backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                        borderColor: 'rgba(0, 123, 255, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
