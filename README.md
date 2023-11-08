@@ -1,16 +1,6 @@
 # Fetch Rewards Machine Learning Exercise
 
-## Table of Contents
-1. [Description](#description)
-2. [Getting Started](#getting-started)
-    - [Dependencies](#dependencies)
-    - [Installing](#installing)
-    - [Executing the Program](#executing-the-program)
-    - [Using the Application](#using-the-application)
-3. [Docker Container](#docker-container)
-4. [Authors](#authors)
-5. [License](#license)
-6. [Acknowledgments](#acknowledgments)
+This exercise encompasses the design and implementation of a predictive machine learning model alongside a web application, aimed at estimating the monthly volume of scanned receipts for Fetch Rewards. The model leverages historical data from 2021 to forecast trends and patterns for 2022. The web app facilitates user interaction, allowing for the visualization and retrieval of predictive insights with ease. The end-to-end solution demonstrates a practical application of machine learning techniques in a business context, emphasizing predictive analytics and user experience.
 
 ## Description
 
