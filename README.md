@@ -52,15 +52,14 @@ This repository is part of the Fetch Rewards Take-home Exercise for a Machine Le
 
 ### Docker Container 
 
-1. Build the Docker image:
+1. Pull the docker image:
    ```sh
-   docker build -t fetch-receipts-prediction-app .
+   docker pull vedantlotia/fetch-ml-task
    ```
-2. Run the Docker container:
+2. To run docker image:
    ```sh
-   docker run -p 5000:5000 fetch-receipts-prediction-app
+   docker container run -d -p 5000:5000 vedantlotia/fetch-ml-task
    ```
-
 
 ### Author
 
