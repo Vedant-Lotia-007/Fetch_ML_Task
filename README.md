@@ -18,10 +18,13 @@ This repository is part of the Fetch Rewards Take-home Exercise for a Machine Le
 
 ## Getting Started
 
+
+
 ### Dependencies
 
 - Python 3.8+
 - Required Python libraries as listed in `requirements.txt`
+
 
 ### Installing
 
@@ -38,6 +41,7 @@ This repository is part of the Fetch Rewards Take-home Exercise for a Machine Le
    pip install -r requirements.txt
    ```
 
+
 ### Executing the program
 
 1. Run the application:
@@ -49,10 +53,13 @@ This repository is part of the Fetch Rewards Take-home Exercise for a Machine Le
    http://localhost:5000
    ```
 
+
+
 ### Using the application
 
 - The web UI allows users to select a future month of 2022 and predict the number of receipts that will be scanned. One could also view the whole year prediction.
 - Follow the on-screen instructions to submit your query and view the predictions.
+
 
 ### Docker Container 
 
@@ -65,9 +72,11 @@ This repository is part of the Fetch Rewards Take-home Exercise for a Machine Le
    docker run -p 5000:5000 fetch-receipts-prediction-app
    ```
 
+
 ### Author
 
 - Vedant Lotia
+
 
 ## Contact
 For any questions or clarifications, feel free to reach out at vedantlotia007@gmail.com or raise an issue on this GitHub repository.
