@@ -10,10 +10,9 @@ This repository is part of the Fetch Rewards Take-home Exercise for a Machine Le
 
 
 
-### Dependencies
+## Dependencies
 
-- Python 3.8+
-- Required Python libraries as listed in `requirements.txt`
+- The requirment file will download all the dependencies required  `requirements.txt`
 
 
 ### Installing
